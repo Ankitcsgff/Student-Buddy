@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Calculator - BCA Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2><i class="fa-solid fa-graduation-cap"></i> BCA Portal</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="notes.html"><i class="fa-solid fa-book"></i> Notes</a></li>
+                    <li><a href="#"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+                    <li class="active"><a href="attendance.html"><i class="fa-solid fa-chart-line"></i> Attendance</a></li>
+                    <li><a href="#"><i class="fa-solid fa-calendar-days"></i> Timetable</a></li>
+                    <li><a href="#"><i class="fa-solid fa-bullhorn"></i> Notices</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li class="premium-link"><a href="#"><i class="fa-solid fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>📊 Attendance Tracker</h1>
+                <p>अपनी अटेंडेंस कैलकुलेट करें (75% क्राइटेरिया चेक करें)</p>
+            </header>
+
+            <div class="calc-card">
+                <h3>Attendance Calculator</h3>
+                <div class="input-group">
+                    <label>Total Classes Held (कुल क्लास):</label>
+                    <input type="number" id="totalClasses" placeholder="e.g. 50">
+                </div>
+                <div class="input-group">
+                    <label>Classes Attended (आपकी अटेंड की गई क्लास):</label>
+                    <input type="number" id="attendedClasses" placeholder="e.g. 40">
+                </div>
+                <button onclick="calculateAttendance()" class="btn-calc">Calculate Percentage</button>
+
+                <div id="resultBox" class="result-box">
+                    <p id="percentageResult">Your Percentage: --%</p>
+                    <p id="statusMessage" class="status-msg"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function calculateAttendance() {
+            let total = document.getElementById('totalClasses').value;
+            let attended = document.getElementById('attendedClasses').value;
+            let resultText = document.getElementById('percentageResult');
+            let statusMsg = document.getElementById('statusMessage');
+
+            if (total === '' || attended === '' || Number(total) <= 0) {
+                alert('कृपया सही संख्या दर्ज करें!');
+                return;
+            }
+
+            if (Number(attended) > Number(total)) {
+                alert('अटेंड की गई क्लास कुल क्लास से ज़्यादा नहीं हो सकती!');
+                return;
+            }
+
+            let percentage = ((attended / total) * 100).toFixed(2);
+            resultText.innerText = "Your Percentage: " + percentage + "%";
+
+            if (percentage >= 75) {
+                statusMsg.innerText = "✅ बहुत बढ़िया! आप परीक्षा के लिए Eligible हैं।";
+                statusMsg.style.color = "#16a34a";
+            } else {
+                statusMsg.innerText = "⚠️ चेतावनी! 75% से कम अटेंडेंस है, और क्लास अटेंड करें।";
+                statusMsg.style.color = "#dc2626";
+            }
+        }
+    </script>
+</body>
+</html>
