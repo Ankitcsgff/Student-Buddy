@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Student Buddy</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#182230}
-header{background:#2563eb;color:white;padding:22px 18px;border-radius:0 0 24px 24px}
-h1{margin:0 0 6px;font-size:25px}.sub{opacity:.9}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-.card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 14px #0000000d}
-.card h3{margin:8px 0 5px}.icon{font-size:28px}.full{grid-column:1/-1}
-input,button{width:100%;padding:12px;border-radius:10px;border:1px solid #d6dce5;margin-top:8px}
-button{background:#2563eb;color:white;border:0;font-weight:bold}.result{font-size:20px;font-weight:bold;margin-top:10px}
-nav{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px;text-align:center;box-shadow:0 -2px 12px #0001}
-nav span{margin:0 12px;font-size:13px}
-main{padding-bottom:75px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Student Portal v2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<header><h1>📚 Student Buddy</h1><div class="sub">Your simple college companion</div></header>
-<main class="grid">
-<section class="card"><div class="icon">✅</div><h3>Attendance</h3><input id="att1" type="number" placeholder="Classes attended"><input id="att2" type="number" placeholder="Total classes"><button onclick="attendance()">Calculate</button><div id="attR" class="result"></div></section>
-<section class="card"><div class="icon">📊</div><h3>Percentage</h3><input id="m1" type="number" placeholder="Marks obtained"><input id="m2" type="number" placeholder="Total marks"><button onclick="percent()">Calculate</button><div id="perR" class="result"></div></section>
-<section class="card full"><div class="icon">📝</div><h3>My Tasks</h3><input id="task" placeholder="Enter an assignment/task"><button onclick="addTask()">Add Task</button><ul id="tasks"></ul></section>
-<section class="card full"><div class="icon">📅</div><h3>Today's Timetable</h3><p>09:00 — Data Structures</p><p>11:00 — DBMS</p><p>01:00 — Java</p><p>03:00 — Digital Electronics</p></section>
-<section class="card full"><div class="icon">💡</div><h3>Future earning features</h3><p>Premium notes, coaching dashboards, institute management and paid custom versions can be added later.</p></section>
-</main>
-<nav><span>🏠 Home</span><span>📚 Notes</span><span>📝 Tasks</span><span>👤 Profile</span></nav>
-<script>
-function attendance(){let a=+att1.value,t=+att2.value;attR.textContent=t>0?(a/t*100).toFixed(2)+"%":"Enter valid values"}
-function percent(){let a=+m1.value,t=+m2.value;perR.textContent=t>0?(a/t*100).toFixed(2)+"%":"Enter valid values"}
-function addTask(){let x=task.value.trim();if(!x)return;let li=document.createElement("li");li.textContent=x+" ";let b=document.createElement("button");b.textContent="Done";b.style.width="auto";b.onclick=()=>li.remove();li.appendChild(b);tasks.appendChild(li);task.value=""}
-</script>
-</body></html>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2><i class="fa-solid fa-graduation-cap"></i> BCA Portal</h2>
+            <nav>
+                <ul>
+                    <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="notes.html"><i class="fa-solid fa-book"></i> Notes</a></li>
+                    <li><a href="assignments.html"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+                    <li><a href="attendance.html"><i class="fa-solid fa-chart-line"></i> Attendance</a></li>
+                    <li><a href="timetable.html"><i class="fa-solid fa-calendar-days"></i> Timetable</a></li>
+                    <li><a href="notices.html"><i class="fa-solid fa-bullhorn"></i> Notices</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li class="premium-link"><a href="premium.html"><i class="fa-solid fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Welcome Back, Student! 👋</h1>
+                <p>BCA Semester Dashboard</p>
+            </header>
+
+            <section class="dashboard-cards">
+                <div class="card">
+                    <i class="fa-solid fa-chart-pie card-icon"></i>
+                    <h3>Attendance</h3>
+                    <p class="stat">82%</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-tasks card-icon"></i>
+                    <h3>Pending Tasks</h3>
+                    <p class="stat">2 Assignments</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-bell card-icon"></i>
+                    <h3>New Notices</h3>
+                    <p class="stat">2 Unread</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
